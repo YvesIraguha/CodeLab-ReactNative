@@ -44,9 +44,8 @@ jobs:
       - run:
           name: yarn coveralls
           command: |
-            sudo docker-php-ext-enable xdebug
           # notify Code Climate of a pending test report using `before-build`
             ./cc-test-reporter before-build
-            sudo vendor/bin/phpunit --coverage-clover clover.xml
+            yarn coveralls
           # upload test report to Code Climate using `after-build`
             ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
