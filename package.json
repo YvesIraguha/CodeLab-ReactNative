@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "expo start",
-    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test": "jest --coverage",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject"
