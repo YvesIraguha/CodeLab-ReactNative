@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import styles from './ProfileStyleSheet';
-import ProfileImage from '../ components/ProfileImage';
-import AboutItem from '../ components/AboutSectionItem';
-import GithubLink from '../ components/GithubLink';
-import NotFound from '../ components/NotFound';
+import ProfileImage from '../components/ProfileImage';
+import AboutItem from '../components/AboutSectionItem';
+import GithubLink from '../components/GithubLink';
+import NotFound from '../components/NotFound';
+
 export default class Profile extends Component {
   constructor() {
     super();
@@ -25,9 +27,9 @@ export default class Profile extends Component {
   }
 
   componentDidMount = async () => {
-    const url = 'https://api.github.com/users/coolbeatz70';
+    const newUrl = this.props.navigation.state.params.url;
     try {
-      const response = await axios.get(url);
+      const response = await axios.get(newUrl);
       this.setState({
         profile: { ...this.state.profile, ...response.data },
         loading: false
