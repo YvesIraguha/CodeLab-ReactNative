@@ -1,11 +1,23 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/src/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/assets/**",
+      "!**/.expo/**"
+    ]
+  },
   "scripts": {
     "start": "expo start",
-    "test": "jest",
+    "test": "jest --coverage",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
     "expo": "^32.0.0",
@@ -14,6 +26,7 @@
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
+    "coveralls": "^3.0.3",
     "jest": "^24.8.0"
   },
   "private": true
