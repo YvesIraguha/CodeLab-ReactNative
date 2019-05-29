@@ -35,7 +35,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-       - run:
+      - run:
           name: Setup Code Climate test-reporter
           command: |
           # download test reporter as a static binary
