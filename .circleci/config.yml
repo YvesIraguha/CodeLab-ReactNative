@@ -1,30 +1,28 @@
 version: 2
 jobs:
   build:
-    branches:
-      only:
-        - master
-        - develop
-        - '/ft-.*/'
-        - '/ch-.*/'
-        - '/bg-.*/'
     docker:
-      - image: 'circleci/node:10.15.0'
-    working_directory: ~/repo
+      - image: circleci/node:10.0-browsers
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - 'v1-dependencies-{{ checksum "package.json" }}'
-            - v1-dependencies-
-      - run: 'yarn install'
+      - run:
+          name: 'Install Dependencies'
+          command: npm i
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
       - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
-          key: 'v1-dependencies-{{ checksum "package.json" }}'
+            - ./node_modules
       - run:
-          name: 'Setup Code Climate test-reporter'
-          command: "curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter\nchmod +x ./cc-test-reporter\n"
+          name: 'Run the tests and collect coverage'
+          command: |
+            ./cc-test-reporter before-build
+            npm run test
+            ./cc-test-reporter after-build --exit-code $?
       - run:
-          name: 'yarn coveralls'
-          command: "./cc-test-reporter before-build\nyarn coveralls\n./cc-test-reporter after-build --exit-code $?\n"
+          name: 'Submit the coverage report to coveralls'
+          command: npm run coveralls
