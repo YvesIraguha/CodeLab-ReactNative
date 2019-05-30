@@ -1,38 +1,28 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
-    branches:
-      only:
-        - master
-        - develop
-        - /ft-.*/
-        - /ch-.*/
-        - /bg-.*/
     docker:
-      # specify the version you desire here
-      - image: circleci/node:10.15.0
-    working_directory: ~/repo
-
+      - image: circleci/node:10.0-browsers
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: yarn install
-
+      - run:
+          name: 'Install Dependencies'
+          command: npm i
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
       - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: yarn test
+            - ./node_modules
+      - run:
+          name: 'Run the tests and collect coverage'
+          command: |
+            ./cc-test-reporter before-build
+            npm run test
+            ./cc-test-reporter after-build --exit-code $?
+      - run:
+          name: 'Submit the coverage report to coveralls'
+          command: npm run coveralls
