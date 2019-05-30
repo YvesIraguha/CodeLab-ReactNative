@@ -10,27 +10,30 @@ import UserItem from '../components/UserItem';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 150
+    marginTop: 150,
+    marginBottom: 10
   },
   title: {
     marginLeft: 5,
     marginTop: 30,
     marginBottom: 15,
-    fontWeight: 'bold'
+    fontFamily: 'cardo-regular'
   }
 });
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      engineers: ['hello world'],
+      engineers: [],
       loading: true
     };
   }
 
   componentDidMount = () => {
     this.setState({ loading: true });
-    fetch('https://api.github.com/search/users?q=location:lagos+language:java')
+    return fetch(
+      'https://api.github.com/search/users?q=location:lagos+language:java'
+    )
       .then(response => response.json())
       .then(response => {
         this.setState({ engineers: response.items, loading: false });
@@ -43,7 +46,7 @@ export default class Home extends Component {
       <ActivityIndicator size="large" color="#0000ff" />
     ) : (
       <View style={styles.container}>
-        <Text style={styles.title}>{engineers.length} engineers</Text>
+        <Text style={styles.title}>{engineers.length} Engineers</Text>
         <FlatList
           data={[...engineers]}
           renderItem={({ item }) => <UserItem profile={item} />}
