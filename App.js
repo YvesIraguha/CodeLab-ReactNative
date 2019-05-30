@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#4834D4',
     position: 'absolute',
-    top: 50,
+    top: 0,
     justifyContent: 'center',
     paddingLeft: 50,
     width: Math.floor(screen.width),

@@ -10,7 +10,7 @@ import UserItem from '../components/UserItem';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 200
+    marginTop: 150
   },
   title: {
     marginLeft: 5,
@@ -20,10 +20,14 @@ const styles = StyleSheet.create({
   }
 });
 export default class Home extends Component {
-  state = {
-    engineers: [],
-    loading: true
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      engineers: ['hello world'],
+      loading: true
+    };
+  }
+
   componentDidMount = () => {
     this.setState({ loading: true });
     fetch('https://api.github.com/search/users?q=location:lagos+language:java')
