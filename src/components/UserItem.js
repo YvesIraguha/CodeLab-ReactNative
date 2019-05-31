@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Text, View, Image, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
-export default class UserItem extends Component {
+export default class UserItem extends PureComponent {
   render() {
     const { login, avatar_url } = this.props.profile;
     return (

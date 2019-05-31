@@ -1,5 +1,11 @@
-import addNumbers from '../src/index';
+import React from 'react';
+import { shallow } from 'enzyme';
+import App from '../src';
 
-test('should test one number', () => {
-  expect(addNumbers(2, 3)).toEqual(5);
+describe('App component', () => {
+  test('should render the App component', () => {
+    const wrapper = shallow(<App />);
+    console.log('hello world');
+    expect(wrapper).toMatchSnapshot();
+  });
 });
