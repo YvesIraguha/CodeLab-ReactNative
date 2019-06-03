@@ -10,37 +10,46 @@ import {
 import Home from './screens/Home';
 import { Font } from 'expo';
 
-const screen = Dimensions.get('window');
+const cardoFont = require('../assets/fonts/Cardo-Regular.ttf');
+const cardoBold = require('../assets/fonts/Cardo-Bold.ttf');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  header: {
-    backgroundColor: '#4834D4',
-    position: 'absolute',
-    top: 0,
-    justifyContent: 'center',
-    paddingLeft: 50,
-    width: Math.floor(screen.width),
-    height: Math.floor(screen.height / 5)
-  },
-  mainTitle: {
-    fontSize: 30,
-    fontFamily: 'cardo-bold',
-    fontWeight: 'bold',
-    color: 'white'
-  },
-  secondaryTitle: {
-    fontFamily: 'cardo-regular',
-    fontSize: 16,
-    color: 'white'
-  }
+const screen = Dimensions.get('window');
+let styles = {};
+Font.loadAsync({
+  'cardo-regular': cardoFont,
+  'cardo-bold': cardoBold
+}).then(() => {
+  styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    header: {
+      backgroundColor: '#4834D4',
+      position: 'absolute',
+      top: 0,
+      justifyContent: 'center',
+      paddingLeft: 50,
+      width: Math.floor(screen.width),
+      height: Math.floor(screen.height / 5)
+    },
+    mainTitle: {
+      fontSize: 30,
+      fontFamily: 'cardo-bold',
+      fontWeight: 'bold',
+      color: 'white'
+    },
+    secondaryTitle: {
+      fontFamily: 'cardo-regular',
+      fontSize: 16,
+      color: 'white'
+    }
+  });
 });
-export default class App extends React.Component {
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,13 +57,13 @@ export default class App extends React.Component {
     };
   }
 
-  // async componentDidMount() {
-  //   await Font.loadAsync({
-  //     'cardo-regular': require('../assets/fonts/Cardo-Regular.ttf'),
-  //     'cardo-bold': require('../assets/fonts/Cardo-Bold.ttf')
-  //   });
-  //   this.setState({ fontLoaded: true });
-  // }
+  async componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        fontLoaded: true
+      });
+    }, 500);
+  }
   render() {
     return this.state.fontLoaded ? (
       <View style={styles.container}>
@@ -72,3 +81,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;
