@@ -76,7 +76,9 @@ export default class Home extends Component {
       >
         <ActivityIndicator size="large" color="#0000ff" />
       </View>
-    ) : null;
+    ) : (
+      <Text />
+    );
   };
   render() {
     const { engineers, loading } = this.state;
