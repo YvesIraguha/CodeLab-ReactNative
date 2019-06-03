@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../src/App';
+import App from '../src/components/HeaderHome';
 import { ActivityIndicator, View } from 'react-native';
 
 describe('App component', () => {

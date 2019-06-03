@@ -7,17 +7,24 @@ import {
   StyleSheet
 } from 'react-native';
 import UserItem from '../components/UserItem';
+import HeaderHome from '../components/HeaderHome';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 150,
-    marginBottom: 10
+    marginTop: 30,
+    marginBottom: 10,
+    alignItems: 'center'
   },
   title: {
     marginLeft: 5,
     marginTop: 30,
     marginBottom: 15,
     fontFamily: 'cardo-regular'
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 export default class Home extends Component {
@@ -31,6 +38,9 @@ export default class Home extends Component {
     };
   }
 
+  static navigationOptions = {
+    headerTitle: <HeaderHome />
+  };
   componentDidMount = () => {
     this.setState({ loading: true });
     this.makeRemoteRequest();
@@ -83,18 +93,24 @@ export default class Home extends Component {
   render() {
     const { engineers, loading } = this.state;
     return loading ? (
-      <ActivityIndicator size="large" color="#0000ff" />
+      <View style={styles.activityIndicator}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
     ) : (
       <View style={styles.container}>
-        <Text style={styles.title}>{engineers.length} Engineers</Text>
-        <FlatList
-          data={[...engineers]}
-          renderItem={({ item }) => <UserItem profile={item} />}
-          keyExtractor={(item, index) => `${item.id + index}`}
-          ListFooterComponent={this.renderFooter}
-          onEndReached={this.handleLoadMore}
-          onEndReachedThreshold={1}
-        />
+        <View>
+          <FlatList
+            data={[...engineers]}
+            renderItem={({ item }) => <UserItem profile={item} />}
+            keyExtractor={(item, index) => `${item.id + index}`}
+            ListFooterComponent={this.renderFooter}
+            onEndReached={this.handleLoadMore}
+            onEndReachedThreshold={1}
+            ListHeaderComponent={
+              <Text style={styles.title}>{engineers.length} Engineers</Text>
+            }
+          />
+        </View>
       </View>
     );
   }
