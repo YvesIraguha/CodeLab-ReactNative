@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home screen should render the footer with loading spinner 1`] = `
+<Component
+  style={
+    Object {
+      "borderTopColor": "#0000ff",
+      "borderTopWidth": 1,
+      "paddingVertical": 20,
+    }
+  }
+>
+  <Component
+    animating={true}
+    color="#0000ff"
+    hidesWhenStopped={true}
+    size="large"
+  />
+</Component>
+`;
+
+exports[`Home screen should test component did mount 1`] = `ShallowWrapper {}`;
