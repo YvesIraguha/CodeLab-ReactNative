@@ -1,21 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import Navigation from './src/navigation/Navigation';
+import { ActivityIndicator, View } from 'react-native';
+import { Font } from 'expo';
+const cardoFont = require('./assets/fonts/Cardo-Regular.ttf');
+const cardoBold = require('./assets/fonts/Cardo-Bold.ttf');
+export default class App extends Component {
+  state = {
+    fontLoaded: false
+  };
+  async componentDidMount() {
+    await Font.loadAsync({
+      'cardo-regular': cardoFont,
+      'cardo-bold': cardoBold
+    });
 
-export default class App extends React.Component {
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+    const { fontLoaded } = this.state;
+    return fontLoaded ? (
+      <Navigation />
+    ) : (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#000" />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
