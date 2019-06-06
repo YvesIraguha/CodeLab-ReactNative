@@ -10,21 +10,24 @@ import { AntDesign } from '@expo/vector-icons';
 import styles from '../screens/ProfileStyleSheet';
 
 export default class ProfileImage extends Component {
+  constructor(props) {
+    super(props);
+  }
   onShare = async () => {
     const { username, url } = this.props;
     try {
       const result = await Share.share({
         message: `Check out this awesome developer @${username}, ${url}`
       });
-      if (result.action === Share.sharedAction) {
-        alert('shared');
-      } else if (result.action === Share.dismissedAction) {
-        alert('dismissed');
+
+      if (result) {
+        alert('completed');
       }
     } catch (error) {
       alert(error.message);
     }
   };
+
   render() {
     const { username, imageUrl } = this.props;
     return (

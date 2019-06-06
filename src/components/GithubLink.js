@@ -8,9 +8,7 @@ export default class GitHubLinKContainer extends Component {
     return (
       <View style={styles.aboutSectionItems}>
         <Text style={styles.itemTitle}>GitHub Link</Text>
-        <TouchableHighlight
-          onPress={() => this.alert('Hey you clicked this guy')}
-        >
+        <TouchableHighlight onPress={() => alert('Hey you clicked this guy')}>
           <View style={styles.fullName}>
             <Text style={styles.itemText}>
               {fullName ? fullName : `@${username}`}
