@@ -22,13 +22,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   itemText: {
-    color: '#D48F34'
+    color: '#D48F34',
+    fontFamily: 'cardo-regular',
+    fontSize: 15
+  },
+  itemTitle: {
+    fontFamily: 'cardo-regular',
+    fontSize: 15
   },
   username: {
     justifyContent: 'center',
     color: 'white',
     paddingLeft: 10,
     paddingRight: 10,
+    fontFamily: 'cardo-bold',
     fontSize: 20
   },
   usernameContainer: {
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   aboutTitle: {
-    fontWeight: 'bold',
+    fontFamily: 'cardo-bold',
     marginBottom: 10,
     color: '#4834D4',
     fontSize: 25

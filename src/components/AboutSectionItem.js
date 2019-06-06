@@ -6,7 +6,7 @@ export default class AboutItem extends Component {
     const { item, amount } = this.props;
     return (
       <View style={styles.aboutSectionItems}>
-        <Text>Number of {item}</Text>
+        <Text style={styles.itemTitle}>Number of {item}</Text>
         <Text style={styles.itemText}>{amount}</Text>
       </View>
     );
