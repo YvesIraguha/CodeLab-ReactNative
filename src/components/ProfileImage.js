@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import { Text, View, ImageBackground } from 'react-native';
-=======
 import {
   Text,
   View,
@@ -9,20 +6,15 @@ import {
   Share,
   TouchableWithoutFeedback
 } from 'react-native';
->>>>>>> feature(fix): share functionality
 import { AntDesign } from '@expo/vector-icons';
 import styles from '../screens/ProfileStyleSheet';
 
 export default class ProfileImage extends Component {
-<<<<<<< HEAD
-  render() {
-    const { username, imageUrl } = this.props;
-=======
   onShare = async () => {
+    const { username, url } = this.props;
     try {
       const result = await Share.share({
-        message:
-          'Check out this awesome developer @YvesIraguha, https://avatars1.githubusercontent.com/u/19608533?v=4.'
+        message: `Check out this awesome developer @${username}, ${url}`
       });
       if (result.action === Share.sharedAction) {
         alert('shared');
@@ -34,9 +26,7 @@ export default class ProfileImage extends Component {
     }
   };
   render() {
-    const username = 'Yves';
-    const imageUrl = 'https://avatars1.githubusercontent.com/u/19608533?v=4';
->>>>>>> feature(fix): share functionality
+    const { username, imageUrl } = this.props;
     return (
       <ImageBackground
         source={{ uri: imageUrl }}
@@ -47,13 +37,9 @@ export default class ProfileImage extends Component {
             <Text style={styles.username}>@{username}</Text>
           </View>
           <View style={styles.shareIconContainer}>
-<<<<<<< HEAD
-            <AntDesign size={45} color={'#fff'} name={'sharealt'} />
-=======
             <TouchableWithoutFeedback onPress={this.onShare}>
               <AntDesign size={45} color={'#fff'} name={'sharealt'} />
             </TouchableWithoutFeedback>
->>>>>>> feature(fix): share functionality
           </View>
         </View>
       </ImageBackground>
