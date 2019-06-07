@@ -92,6 +92,7 @@ export default class Home extends Component {
   };
   render() {
     const { engineers, loading } = this.state;
+    const { navigation } = this.props;
     return loading ? (
       <View style={styles.activityIndicator}>
         <ActivityIndicator size="large" color="#0000ff" />
@@ -101,7 +102,9 @@ export default class Home extends Component {
         <View>
           <FlatList
             data={[...engineers]}
-            renderItem={({ item }) => <UserItem profile={item} />}
+            renderItem={({ item }) => (
+              <UserItem profile={item} navigation={navigation} />
+            )}
             keyExtractor={(item, index) => `${item.id + index}`}
             ListFooterComponent={this.renderFooter}
             onEndReached={this.handleLoadMore}

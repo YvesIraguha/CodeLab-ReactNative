@@ -1,5 +1,12 @@
 import React, { PureComponent } from 'react';
-import { Text, View, Image, StyleSheet, Dimensions } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const screen = Dimensions.get('window');
@@ -37,7 +44,10 @@ const styles = StyleSheet.create({
 });
 export default class UserItem extends PureComponent {
   render() {
-    const { login, avatar_url } = this.props.profile;
+    const {
+      profile: { login, avatar_url, url },
+      navigation
+    } = this.props;
     return (
       <View style={styles.listItemContainer}>
         <Image style={styles.listItemAvatar} source={{ uri: avatar_url }} />
@@ -47,7 +57,11 @@ export default class UserItem extends PureComponent {
         </View>
 
         <View style={styles.lastItem}>
-          <Ionicons size={20} color={'#272154'} name={'ios-arrow-forward'} />
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate('Profile', { url })}
+          >
+            <Ionicons size={20} color={'#272154'} name={'ios-arrow-forward'} />
+          </TouchableWithoutFeedback>
         </View>
       </View>
     );
