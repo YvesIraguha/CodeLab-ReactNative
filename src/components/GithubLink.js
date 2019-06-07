@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableHighlight } from 'react-native';
+import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import styles from '../screens/ProfileStyleSheet';
 
 export default class GitHubLinKContainer extends Component {
@@ -16,13 +16,13 @@ export default class GitHubLinKContainer extends Component {
     return (
       <View style={styles.aboutSectionItems}>
         <Text style={styles.itemTitle}>GitHub Link</Text>
-        <TouchableHighlight onPress={this.openInWeb}>
+        <TouchableWithoutFeedback onPress={this.openInWeb}>
           <View style={styles.fullName}>
             <Text style={styles.itemText}>
               {fullName ? fullName : `@${username}`}
             </Text>
           </View>
-        </TouchableHighlight>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
