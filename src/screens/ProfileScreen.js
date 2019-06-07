@@ -62,7 +62,7 @@ export default class Profile extends Component {
     ) : (
       <View style={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
-        <ProfileImage username={username} imageUrl={imageUrl} />
+        <ProfileImage username={username} imageUrl={imageUrl} url={gitHubUrl} />
         <View style={styles.aboutSection}>
           <Text style={styles.aboutTitle}>About</Text>
           <GithubLink fullName={fullName} username={username} />
