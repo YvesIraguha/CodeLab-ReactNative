@@ -1,9 +1,33 @@
 import React, { Component } from 'react';
-import { Text, View, ImageBackground } from 'react-native';
+import {
+  Text,
+  View,
+  ImageBackground,
+  Share,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import styles from '../screens/ProfileStyleSheet';
 
 export default class ProfileImage extends Component {
+  constructor(props) {
+    super(props);
+  }
+  onShare = async () => {
+    const { username, url } = this.props;
+    try {
+      const result = await Share.share({
+        message: `Check out this awesome developer @${username}, ${url}`
+      });
+
+      if (result) {
+        alert('completed');
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   render() {
     const { username, imageUrl } = this.props;
     return (
@@ -16,7 +40,9 @@ export default class ProfileImage extends Component {
             <Text style={styles.username}>@{username}</Text>
           </View>
           <View style={styles.shareIconContainer}>
-            <AntDesign size={45} color={'#fff'} name={'sharealt'} />
+            <TouchableWithoutFeedback onPress={this.onShare}>
+              <AntDesign size={45} color={'#fff'} name={'sharealt'} />
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ImageBackground>

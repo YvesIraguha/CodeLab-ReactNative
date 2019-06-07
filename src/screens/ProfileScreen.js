@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
 import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import styles from './ProfileStyleSheet';
@@ -7,7 +6,6 @@ import ProfileImage from '../components/ProfileImage';
 import AboutItem from '../components/AboutSectionItem';
 import GithubLink from '../components/GithubLink';
 import NotFound from '../components/NotFound';
-
 export default class Profile extends Component {
   constructor() {
     super();
@@ -64,7 +62,7 @@ export default class Profile extends Component {
     ) : (
       <View style={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
-        <ProfileImage username={username} imageUrl={imageUrl} />
+        <ProfileImage username={username} imageUrl={imageUrl} url={gitHubUrl} />
         <View style={styles.aboutSection}>
           <Text style={styles.aboutTitle}>About</Text>
           <GithubLink fullName={fullName} username={username} />
