@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import axios from 'axios';
 import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import styles from './ProfileStyleSheet';
@@ -7,7 +6,6 @@ import ProfileImage from '../components/ProfileImage';
 import AboutItem from '../components/AboutSectionItem';
 import GithubLink from '../components/GithubLink';
 import NotFound from '../components/NotFound';
-
 export default class Profile extends Component {
   constructor() {
     super();
