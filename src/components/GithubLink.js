@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableHighlight, Linking } from 'react-native';
-import WebView from 'react-native-webview';
+import { Text, View, TouchableHighlight } from 'react-native';
 import styles from '../screens/ProfileStyleSheet';
 
 export default class GitHubLinKContainer extends Component {
