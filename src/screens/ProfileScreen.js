@@ -52,6 +52,7 @@ export default class Profile extends Component {
       loading,
       error
     } = this.state;
+    const { navigation } = this.props;
 
     return loading ? (
       <View style={[styles.container, { justifyContent: 'center' }]}>
@@ -65,7 +66,12 @@ export default class Profile extends Component {
         <ProfileImage username={username} imageUrl={imageUrl} url={gitHubUrl} />
         <View style={styles.aboutSection}>
           <Text style={styles.aboutTitle}>About</Text>
-          <GithubLink fullName={fullName} username={username} />
+          <GithubLink
+            fullName={fullName}
+            username={username}
+            url={gitHubUrl}
+            navigation={navigation}
+          />
           <AboutItem item="repositories" amount={repositories} />
           <AboutItem item="stars" amount={stars} />
           <AboutItem item="followers" amount={followers} />
